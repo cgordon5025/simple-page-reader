@@ -61,7 +61,7 @@ function App() {
     spanPhrase.append(spanObj);
   }
   // console.log(spanPhrase)
-  document.getElementById('highlightContainer').appendChild(spanPhrase)
+  // document.getElementById('highlightContainer').appendChild(spanPhrase)
 
   const rate = 1;
   const daniel = voices[14];
@@ -70,22 +70,29 @@ function App() {
   utterThis.voice = daniel
   // var wordIndex = 0
   //trying to get voice word tracking
-  // const words = document.getElementById('highlightContainer')
-  const words = document.getElementById('highlightContainer').firstChild.children
-  console.log(words)
-  console.log(words.length)
+  const words = document.getElementById('highlightContainer')
+  // const words = document.getElementById('highlightContainer').firstChild.children
+
   const color = () => {
     console.log("doing the highlight")
-    for (let i = 0; i < words.length; i++) {
-      console.log(words[i])
-      words[i].style.color = "blue"
-      console.log(`coloring ${words[i]} blue`)
-    }
+    // set up as an interval it does not function as I though, brush up on interval skills?
+    var highlight = setInterval(function () {
+      console.log("reading the words")
+      for (let i = 0; i < words.length - 1; i++) {
+        console.log(words[i])
+        words[i].style.color = "blue"
+        console.log(`coloring ${words[i]} blue`)
+        if (i == words.length - 1) {
+          clearInterval(highlight)
+        }
+      }
+    }, 1000)
+
   }
   //speak it
   const speak = () => {
     synth.speak(utterThis)
-    color()
+    // color()
   }
   const WebcamComponenet = () => <Webcam />
 
