@@ -55,6 +55,7 @@ function App() {
     console.log("running the span section")
     var spanObj = document.createElement('span')
     spanObj.textContent = (tempPhrase[i] + " ")
+    spanObj.setAttribute('id', `word_${i}`)
     // spanPhrase.className = "spanPhrase"
     spanPhrase.appendChild(spanObj)
     spanPhrase.append(spanObj);
@@ -70,15 +71,15 @@ function App() {
   // var wordIndex = 0
   //trying to get voice word tracking
   // const words = document.getElementById('highlightContainer')
-  const words = document.getElementById('highlightContainer').firstChild
+  const words = document.getElementById('highlightContainer').firstChild.children
   console.log(words)
+  console.log(words.length)
   const color = () => {
     console.log("doing the highlight")
-    for (let i = 0; i < parseWords.length; i++) {
-      
-      console.log("in the loop")
-      console.log(parseWords[i])
-      words[i].style.backgroundcolor = "blue"
+    for (let i = 0; i < words.length; i++) {
+      console.log(words[i])
+      words[i].style.color = "blue"
+      console.log(`coloring ${words[i]} blue`)
     }
   }
   //speak it
@@ -102,7 +103,6 @@ function App() {
         <div id="highlightContainer">
 
         </div>
-        {/* <p id='highlight'> {spanPhrase}</p> */}
         <p> {daniel.name} {daniel.lang}</p>
         <button onClick={speak}> Speak as daniel</button>
         <div>
